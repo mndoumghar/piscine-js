@@ -1,6 +1,8 @@
+
+
 person.clone1 = 'Rick'
 person.clone2 = 'Rick'
-samePerson = person
+const samePerson = person
 person.age += 1
 person.country = 'FR'
 Object.freeze(person.clone1)
