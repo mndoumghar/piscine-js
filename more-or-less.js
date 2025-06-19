@@ -7,5 +7,8 @@ const less= (x) => x-1
  }
 
 function sub(w, y) {
+    if (w < 0 || y < 0) {
+        return 0 
+    }
     return y/w
 }
