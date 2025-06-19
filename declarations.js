@@ -1,5 +1,5 @@
 
- const escapeStr = "'\\/\""
+ const escapeStr = "`\\/\""
 
 const arr = [4, '2']
 
@@ -19,6 +19,7 @@ const nested = {
 }
 Object.freeze(nested)
 Object.freeze(obj)
+console.log(escapeStr)
 
 
 
