@@ -11,6 +11,6 @@ function sub(w, y) {
         return 0 
     }
     
-    return y-w
+    return w - y
 }
 console.log(sub(3, 10))
