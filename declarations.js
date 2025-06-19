@@ -1,15 +1,15 @@
 
-escapeStr = "'\\/\""
+ const escapeStr = "'\\/\""
 
-arr = [4, '2']
+const arr = [4, '2']
 
-obj = {
+const obj = {
     str: "hello ",
     num: 1,
     bool: true,
     undef: undefined
 }
-nested = {
+const nested = {
     arr: [4, undefined, '2'],
     obj: {
         str: "hello ",
