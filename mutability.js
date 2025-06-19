@@ -1,9 +1,3 @@
-const person = {
-    name: 'Rick',
-    age: 77,
-    country: 'US',
-}
-
 person.clone1 = 'Rick'
 person.clone2 = 'Rick'
 samePerson = person
