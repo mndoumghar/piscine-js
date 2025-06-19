@@ -10,7 +10,7 @@ function set(key, values) {
     sourceObject[key] = values
 
 
-
+    return  sourceObject[key]
 }
 
 
