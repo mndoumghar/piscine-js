@@ -1,4 +1,4 @@
-var str = ""
-var num = 1
-var bool = true
-var undef 
+const str = String
+const num = Number
+const bool = Boolean
+const undef = undefined
