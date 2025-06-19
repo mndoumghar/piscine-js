@@ -1,5 +1,5 @@
 
-escapeStr = "'\\,/,\""
+escapeStr = "'\\/\""
 
 arr = [4, '2']
 
