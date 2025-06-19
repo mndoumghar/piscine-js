@@ -1,13 +1,25 @@
-
-function get() {
-    return sourceObject.num
+const sourceObject = {
+    num: 42,
+    bool: true,
+    str: 'some text',
+    log: console.log,
 }
 
-function set(num) {
+function get(key) {
 
-    sourceObject.num = num
+    return sourceObject[key]
+}
+
+
+function set(key, values) {
+
+    sourceObject[key] = values
+
+
 
 }
 
-set(11)
-console.log(get())
+
+set(sourceObject.num, 16)
+console.log(get(sourceObject.num));
+
