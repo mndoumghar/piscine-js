@@ -4,7 +4,7 @@ function dogYears(name, age) {
 
     if (name == "earth") {      
     
-        return Number((age * 7) / (365.25 * 24 * 60 * 60)).toFixed(2)
+        return Number(((age * 7) / (365.25 * 24 * 60 * 60)).toFixed(2))
 
     }
 
