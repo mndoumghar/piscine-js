@@ -30,3 +30,4 @@ const getAcceleration = (Isaac) =>
 
                     : "impossible"
 
+ 
