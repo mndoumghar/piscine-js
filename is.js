@@ -1,106 +1,102 @@
 
-is.num =  function (num) {
+is.num = function (num) {
 
-        if ((typeof num) == "number") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof num) == "number") {
+        return true
+    } else {
+        return false
     }
+}
 
 
-   is.nan =  function (nan) {
+is.nan = function (nan) {
 
-        if ((typeof nan) == "NaN") {
-            return true
-        } else {
-            return false
-        }
+    if (Number.isNaN(nan)) {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.str=  function (str) {
+is.str = function (str) {
 
-        if ((typeof str) == "string") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof str) == "string") {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.bool =  function (bool) {
+is.bool = function (bool) {
 
-        if ((typeof bool) == "boolean") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof bool) == "boolean") {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.undef =  function (undef) {
+is.undef = function (undef) {
 
-        if ((typeof undef) == "undefined") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof undef) != "undefined") {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.def=  function (def) {
+is.def = function (def) {
 
-        if ((typeof def) == "NaN") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof def) == "NaN") {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.arr=  function (arr) {
+is.arr = function (arr) {
 
-        if ((typeof num) == "array") {
-            return true
-        } else {
-            return false
-        }
+    if (Array.isArray(arr)) {
+        return true
+    } else {
+        return false
     }
+}
 
-    is.obj =  function (obj) {
+is.obj = function (obj) {
 
-        if ((typeof obj) == "object") {
-            return true
-        } else {
-            return false
-        }
+    if ((typeof obj) == "object" && obj != null && !Array.isArray(obj)) {
+        return true
+    } else {
+        return false
     }
+console.log(is.truthy(1))
+console.log(is.falsy(1))
 
 
-     is.fun =  function (fun) {
+}
 
-        if ((typeof fun) == "function") {
-            return true
-        } else {
-            return false
-        }
+
+is.fun = function (fun) {
+
+    if ((typeof fun) == "function") {
+        return true
+    } else {
+        return false
     }
+}
 
-     is.truthy=  function (truthy) {
+is.truthy = function (truthy) {
 
-        if ((typeof truthy) == "truthy") {
-            return true
-        } else {
-            return false
-        }
-    }
+    return !!truthy
+}
 
 
-     is.falsy =  function (falsy) {
+is.falsy = function (falsy) {
 
-        if ((typeof falsy) == "falsy") {
-            return true
-        } else {
-            return false
-        }
-    }
+    return !falsy
 
+}
 
 
 
