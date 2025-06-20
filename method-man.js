@@ -25,4 +25,4 @@ function capitalize(x) {
 console.log(words('hello hfgH'))
 console.log(sentence(['hello', 'hfgH']))
 console.log(whisper('DÉJÀ VU'))
-console.log(capitalize('STR'))
+console.log(capitalize('STR c bv'))
