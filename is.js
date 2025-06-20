@@ -1,7 +1,9 @@
 
+
+
 is.num = function (num) {
 
-    if ((typeof num) == "number") {
+    if ((typeof num) === "number") {
         return true
     } else {
         return false
@@ -20,7 +22,7 @@ is.nan = function (nan) {
 
 is.str = function (str) {
 
-    if ((typeof str) == "string") {
+    if ((typeof str) === "string") {
         return true
     } else {
         return false
@@ -29,7 +31,7 @@ is.str = function (str) {
 
 is.bool = function (bool) {
 
-    if ((typeof bool) == "boolean") {
+    if ((typeof bool) === "boolean") {
         return true
     } else {
         return false
@@ -38,7 +40,7 @@ is.bool = function (bool) {
 
 is.undef = function (undef) {
 
-    if ((typeof undef) != "undefined") {
+    if ((typeof undef) === "undefined") {
         return true
     } else {
         return false
@@ -47,7 +49,7 @@ is.undef = function (undef) {
 
 is.def = function (def) {
 
-    if ((typeof def) == "NaN") {
+    if ((typeof def) != "undefined") {
         return true
     } else {
         return false
@@ -65,21 +67,17 @@ is.arr = function (arr) {
 
 is.obj = function (obj) {
 
-    if ((typeof obj) == "object" && obj != null && !Array.isArray(obj)) {
+    if ((typeof obj) === "object" && obj != null && !Array.isArray(obj)) {
         return true
     } else {
         return false
     }
-console.log(is.truthy(1))
-console.log(is.falsy(1))
-
-
 }
 
 
 is.fun = function (fun) {
 
-    if ((typeof fun) == "function") {
+    if ((typeof fun) === "function") {
         return true
     } else {
         return false
@@ -97,6 +95,7 @@ is.falsy = function (falsy) {
     return !falsy
 
 }
+
 
 
 
