@@ -1,5 +1,5 @@
-const smalls = Number.MIN_SAFE_INTEGER
-const biggie = Number.MAX_SAFE_INTEGER
+const smalls = Number.MIN_VALUE
+const biggie = Number.MAX_VALUE
 console.log(smalls)
 
 console.log(biggie)
