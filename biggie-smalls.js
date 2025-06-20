@@ -1,6 +1,5 @@
-let smalls = Number.MIN_SAFE_INTEGER
-let   biggie = Number.MAX_SAFE_INTEGER
+smalls = Number.MIN_SAFE_INTEGER
+biggie = Number.MAX_SAFE_INTEGER
 
-console.log(biggie)
 
 
