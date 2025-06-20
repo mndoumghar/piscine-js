@@ -14,7 +14,7 @@ function yell(x) {
 }
 
 function whisper(x) {
-    return (x.toLowerCase()).split('').join('*')
+    return  '*'+x.toLowerCase() + '*'
 }
 
 function capitalize(x) {
@@ -24,5 +24,5 @@ function capitalize(x) {
 
 console.log(words('hello hfgH'))
 console.log(sentence(['hello', 'hfgH']))
-console.log(whisper('hello hfgH'))
+console.log(whisper('DÉJÀ VU'))
 console.log(capitalize('hello hfgH'))
