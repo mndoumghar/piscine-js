@@ -1,5 +1,18 @@
 const multiply = (x, y) => {
     var i = 0
+    var sign = ''
+    if(x<0 || y<0) {
+    
+        sign = '-'  
+    }
+    if(x<0 && y<0) {
+    
+        sign = ''  
+    }
+    x=  Math.abs(x)
+    y = Math.abs(y)
+
+    
 
     var stock = 0
     while (i < y) {
@@ -7,10 +20,9 @@ const multiply = (x, y) => {
         stock += x
         i++
     }
-    return stock
+    return Number(sign+stock)
 }
 const divide = (x, y) => {
-    var i = 1
 
     var res = 0
     if (x == y) {
@@ -26,6 +38,8 @@ const divide = (x, y) => {
     if (y == 0 || x == 0) {
         return 0
     }
+        var i = 0
+
     while (i < x) {
 
         x = x - y
@@ -41,13 +55,16 @@ function modulo(x, y) {
 
     if (x>0  && y > 0) {
     var counter = x
+
     while (counter>  y) {
+
         counter -= y
     }
     return counter
     }
 }
 
-console.log(multiply(5, 5))
-console.log(divide(30, 5))
+console.log(multiply(123, -22))
+console.log(multiply(-22, -123) )
+console.log(divide(8, 4))
 console.log(modulo(8,2))
