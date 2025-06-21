@@ -1,20 +1,16 @@
 let k = ''
 
 const repeat = (str, num) => {
+var i = 0
+var res = ''
+while (num>i) {
 
-
-
-    if (num <= 0) {
-        return k
-    }
-
-    k += str
-
-
-    return repeat(str, num - 1)
-
+    res+= str
+    i++
+}
+return res
 
 
 }
 
-console.log(repeat("a", 3))
+console.log(repeat('', 3))
