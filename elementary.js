@@ -1,3 +1,4 @@
+
 const multiply = (x, y) => {
     var i = 0
     var sign = ''
@@ -23,59 +24,43 @@ const multiply = (x, y) => {
     return Number(sign + stock)
 }
 const divide = (x, y) => {
+    if (y === 0) return 0 
+    if (x === 0) return 0
 
-    if (x == y) {
-        return 1
+    let negative = (x < 0) !== (y < 0)
+
+    console.log("rr" ,negative)
+
+    x = Math.abs(x)
+    y = Math.abs(y)
+
+    let count = 0;
+    while (x >= y) {
+        x -= y
+        count++
     }
 
-    if (x < y) {
-        return 0
-    }
-    if (y == 1) {
-        return x
-    }
-    if (y == 0 || x == 0) {
-        return 0
-    }
-    var i = 0
-
-
-    var res
-
-    while (i <= x) {
-
-
-        x = x - y
-        res = x
-        if (res < 0) {
-            break
-        }
-
-
-        i++
-
-    }
-    return i
-}
-// console.log(divide(78, 34))
-
-function modulo(x, y) {
-
-    if (x === 0) {
-        return 0
-    }
-
-    if (x > 0 && y > 0) {
-        var counter = x
-
-        while (counter > y) {
-
-            counter -= y
-        }
-        return counter
-    }
+    return negative ? -count : count
 }
 
-// console.log(multiply(123, -22))
-// console.log(multiply(-22, -123))
-// console.log(modulo(8, 2))
+ console.log(divide(78, 34))
+
+const modulo = (x, y) => {
+    if (y === 0) return 0
+    if (x === 0) return 0
+
+    let negative = x < 0
+    x = Math.abs(x)
+    y = Math.abs(y)
+
+    while (x >= y) {
+        x -= y;
+    }
+
+    return negative ? -x : x
+};
+
+
+console.log(multiply(123, -22))
+console.log(multiply(-22, -123))
+console.log(modulo(8, 2))
