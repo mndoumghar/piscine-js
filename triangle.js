@@ -1,14 +1,17 @@
-function triangle(x,y) {
-    
-    
-    for (let i = y; i >=0; i--) {
 
-        for (let j = y-i; j >0; j--) {
-            process.stdout.write(x)
-    
+function triangle(x, y) {
+    let res= ""
+    for (let i = 1; i <= y; i++) {
+        for (let j = 0; j < i; j++) {
+            res += x
         }
-        console.log('')
-        
-    }
+        if (i < y) {
+            
+            res+="\n"
+
+        }
+        }
+        return res
 }
-triangle('#',5)
+
+console.log(triangle("#", 5))
