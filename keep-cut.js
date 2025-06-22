@@ -48,6 +48,9 @@ function cutFirstLast(arr1) {
 
 }
 function keepFirst(arr1) {
+    if (arr1.length <= 3) {
+        return arr1
+    }
     if (Array.isArray(arr1)) {
         return arr1[0][0] + arr1[0][1]
 
@@ -57,6 +60,9 @@ function keepFirst(arr1) {
 
 }
 function keepLast(arr1) {
+     if (arr1.length <= 3) {
+        return arr1
+    }
     if (Array.isArray(arr1)) {
         return arr1[arr1.length - 1][0] + arr1[arr1.length - 1][1]
 
@@ -69,6 +75,9 @@ function keepLast(arr1) {
 
 
 function keepFirstLast(arr1) {
+    if (arr1.length <= 3) {
+        return arr1
+    }
 
     if (Array.isArray(arr1)) {
         return arr1[0][0] + arr1[0][1] + arr1[arr1.length - 1][0] + arr1[arr1.length - 1][1]
@@ -83,7 +92,7 @@ function keepFirstLast(arr1) {
 
 
 //const fruits = ["Banana", "Orange", "Apple", "Mango","helo", 'fd'];
-const fruits = "ABabcdefCD"
+const fruits = "A"
 
 console.log(cutFirst(fruits))
 console.log(cutLast(fruits))
