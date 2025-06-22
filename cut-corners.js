@@ -12,7 +12,7 @@ const modulo = (x, y) => {
         let multipleCount = 1;
 
         while ((multiple + multiple) <= x) {
-            multiple += multiple;
+            multiple += multiple;AA
             multipleCount += multipleCount;
         }
 
