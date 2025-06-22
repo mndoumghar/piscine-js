@@ -19,7 +19,7 @@ function slice(arr1, start, end) {
     }
 
     if (typeof arr1 == "string") {
-        return arr.join('')
+        return join(arr,'')
     }
 
     return arr
@@ -60,3 +60,4 @@ function join(arr, sep = "") {
     }
     return result
 }
+console.log(split('a b c', ' '))
