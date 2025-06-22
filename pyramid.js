@@ -1,20 +1,23 @@
 function pyramid(x, y) {
     let res = "";
-    let i, space, k = 0;
+    const symbolWidth = x.length;
 
-    for (i = 1; i <= y; ++i ) {
-        k = 0
-        for (space = 1; space <= y - i; ++space) {
-            res += "  "; 
+    for (let i = 1; i <= y; ++i ) {
+        // Add appropriate number of spaces for padding
+        for (let space = 1; space <= y - i; ++space) {
+            res += " ".repeat(symbolWidth);
         }
-        while (k != 2 * i-1 ) {
-            res += x + " ";
-            ++k;
+        // Add symbols
+        for (let k = 0; k < 2 * i - 1; ++k) {
+            res += x;
         }
-        res += "\n";
+        if (i < y) {
+            res += "\n";
+        }
     }
 
     return res; 
 }
 
-console.log(pyramid("#", 5));
+
+console.log(pyramid("{}", 5));
