@@ -67,7 +67,4 @@ function includes(arr,ch, index) {
 }
 
     
-
-
-
 console.log(lastIndexOf(numbers, 'x', 2))
