@@ -1,13 +1,26 @@
 function reverse(arr) {
     let stock = []
+    let res = ''
+    if (Array.isArray(arr)) {
 
-    for (let index = arr.length-1; index >=0 ; index--) {
-        stock.push(arr[index])
-       // console.log(arr[index])
+        for (let index = arr.length - 1; index >= 0; index--) {
 
+            stock.push(arr[index])
+
+
+
+        }
+        return stock
+
+
+    } else {
+        for (let index = arr.length - 1; index >= 0; index--) {
+            res += arr[index]
+        }
+        return res
     }
-    return stock
-    
+
+
 }
 
 const array1 = ["one", "two", "three"];
