@@ -38,7 +38,7 @@ function ceil(num) {
 function trunc(num) {
     let i = modulo(num, 1);
     if (num < 0) {
-        return num - i + 1;
+        return num - i ;
     }
     return num - i;
 }
@@ -61,3 +61,4 @@ function round(num) {
     }
 }
 console.log(round(-4.1))
+console.log(trunc(-4.5))
