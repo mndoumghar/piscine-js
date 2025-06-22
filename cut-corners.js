@@ -1,18 +1,26 @@
 
 const modulo = (x, y) => {
-    if (y === 0) return 0
-    if (x === 0) return 0
+    if (y === 0) return 0;
+    if (x === 0) return 0;
 
-    let negative = x < 0
-    x = Math.abs(x)
-    y = Math.abs(y)
+    let negative = x < 0;
+    x = Math.abs(x);
+    y = Math.abs(y);
 
     while (x >= y) {
-        x -= y;
+        let multiple = y;
+        let multipleCount = 1;
+
+        while ((multiple + multiple) <= x) {
+            multiple += multiple;
+            multipleCount += multipleCount;
+        }
+
+        x -= multiple;
     }
 
-    return negative ? -x : x
-};
+    return negative ? -x : x;
+}
 
 
 
@@ -35,12 +43,8 @@ function ceil(num) {
     return num - i + 1;
 }
 
-function trunc(num) {
-    let i = modulo(num, 1);
-    if (num < 0) {
-        return num - i ;
-    }
-    return num - i;
+function trunc(nb) {
+    return nb < 0 ? ceil(nb) : floor(nb);
 }
 
 function round(num) {
@@ -60,5 +64,3 @@ function round(num) {
         }
     }
 }
-console.log(round(-4.1))
-console.log(trunc(-4.5))
