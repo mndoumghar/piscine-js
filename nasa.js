@@ -1,7 +1,7 @@
 function nasa(num) {
     let arr = []
 
-    for (let index = 1; index < num; index++) {
+    for (let index = 1; index <= num; index++) {
         if (index % 3 == 0 && index % 5 == 0) {
             arr.push("NASA")
         } else if (index % 3 == 0) {
@@ -11,8 +11,7 @@ function nasa(num) {
             arr.push("SA")
         } else {
 
-            arr.push(String(index))
-
+            arr.push(index)
         }
 
 
