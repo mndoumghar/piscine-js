@@ -1,13 +1,13 @@
 
 function letterSpaceNumber(str1) {
 
-    const res = /[e|E]\s\d(?!\d)/g
+    const res = /\w\s\d(?!\d)/g
     return str1.match(res)
     
 
 }
 
 
-console.log(letterSpaceNumber('examplE 1e, example 2000e')) 
+console.log(letterSpaceNumber('He is 8 or 9 years old, not 10.')) 
 
 // output: ['e 1']
