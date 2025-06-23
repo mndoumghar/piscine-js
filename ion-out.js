@@ -1,7 +1,14 @@
 const ionOut = (str) => {
-    const reg = /(i)ron(?!t)/g
+    const regex = /(\w*t(?=ion))/g
+    const matches = []
+    let match
+    while ((match = regex.exec(str)) !== null) {
+      //  console.log(matches.push(match[1]))
+        matches.push(match[1])
+    }
 
-    return str.match(reg)  || []
+    return matches
+};
 
-}
-console.log(ionOut('tiron fat iront sat on iron mat. '))
+console.log(ionOut('attention, direction, ghgtionsfhtbb'));
+ 
