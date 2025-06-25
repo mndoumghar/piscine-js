@@ -18,14 +18,14 @@ const addWeek = (date) => {
     } else {
         x += 1
     }
-    console.log(weekday[x])
-}
+        return weekday[x]
+ }
 
-addWeek(new Date('0001-01-01')) // Output: Monday
-addWeek(new Date('0001-01-02')) // Output: Tuesday
-addWeek(new Date('0001-01-07')) // Output: Sunday
-addWeek(new Date('0001-01-08')) // Output: secondMonday
-addWeek(new Date('0001-01-09')) // Output: secondTuesday
+// addWeek(new Date('0001-01-01')) // Output: Monday
+// addWeek(new Date('0001-01-02')) // Output: Tuesday
+// addWeek(new Date('0001-01-07')) // Output: Sunday
+// addWeek(new Date('0001-01-08')) // Output: secondMonday
+// addWeek(new Date('0001-01-09')) // Output: secondTuesday
 
 
 
