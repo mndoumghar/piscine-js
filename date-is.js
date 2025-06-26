@@ -43,9 +43,7 @@ const isPast = (OldTime) => {
         return false
     }
     let Time = OldTime -  new Date() 
-    if (Time<0 ) {date
-Date
-date
+    if (Time<0 ) {
         return true
     } 
         return false
