@@ -9,7 +9,8 @@ const isValid  = (date) => {
 
 const isAfter = (TimeNow, OldTime) => {
     let Time = OldTime - TimeNow 
-    if (Time>0) {
+
+    if (Time<0) {
         return true
     } 
         return false
@@ -19,7 +20,7 @@ const isAfter = (TimeNow, OldTime) => {
 
 const isBefore = (TimeNow, OldTime) => {
     let Time = OldTime - TimeNow 
-    if (Time<0) {
+    if (Time>0) {
         return true
     } 
         return false
@@ -29,7 +30,7 @@ const isBefore = (TimeNow, OldTime) => {
 
 const isFuture = (OldTime) => {
     let Time = OldTime -  new Date() 
-    if (Time>0) {
+    if (Time<0) {
         return true
     } 
         return false
@@ -39,7 +40,7 @@ const isFuture = (OldTime) => {
 
 const isPast = (OldTime) => {
     let Time = OldTime -  new Date() 
-    if (Time<0) {
+    if (Time>0) {
         return true
     } 
         return false
