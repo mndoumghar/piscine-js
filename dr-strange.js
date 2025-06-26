@@ -21,8 +21,6 @@ const timeTravel = ({ date, hour, minute, second }) => {
     date.setSeconds(second)
     return date
 
-
-
 }
 
 
