@@ -8,9 +8,11 @@ const firstDayWeek = (week, years) => {
     let yyyy = res.getFullYear()
 
     if (yyyy < Number(years)) {
-         let mm = date.getMonth()+1 ; 
-        let dd = date.getDate();
-            const formattedres = dd + '-' + mm + '-' + years;
+         let mm = date.getMonth()+1 
+        let dd = date.getDate()
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+            const formattedres = dd + '-' + mm + '-' + years
 
              return formattedres
     }   
