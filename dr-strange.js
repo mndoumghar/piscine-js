@@ -11,7 +11,7 @@ const addWeek = (dateNow) => {
     let olddaete = new Date('0001-01-01')
     let op = dateNow - olddaete
     let calcul = (op / 1000 / 3600 / 24) % 14
-    console.log(obj.weeks[calcul])
+        return obj.weeks[calcul]
 }
 
 
