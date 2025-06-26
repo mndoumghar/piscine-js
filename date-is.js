@@ -39,10 +39,16 @@ const isFuture = (OldTime) => {
 
 
 const isPast = (OldTime) => {
+    if( OldTime == 'Invalid OldTime' || typeof OldTime == 'string' || isNaN(date)) {
+        return false
+    }
     let Time = OldTime -  new Date() 
-    if (Time<0) {
+    if (Time<0 ) {date
+Date
+date
         return true
     } 
         return false
     
 }
+console.log(isPast(''))
