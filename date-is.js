@@ -1,5 +1,5 @@
 
-const isValide  = (date) => {
+const isValid  = (date) => {
     if( date == 'Invalid Date' || typeof date == 'string' || isNaN(date)) {
         return false
     }
