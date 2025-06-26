@@ -1,6 +1,6 @@
 const firstDayWeek = (week, years) => {
     const date = new Date(years,0,1)
-    const d = date.getDay()
+    const d = date.getDay() -1
     const addweek = (week - 1) * 7 - d
     let res = new Date(date.getTime() + addweek * 24 * 3600 * 1000)
     let mm = res.getMonth() + 1; 
@@ -25,6 +25,6 @@ const firstDayWeek = (week, years) => {
     return formattedres 
 }
 
-console.log(firstDayWeek(1,'1000'))
+console.log(firstDayWeek(52, '1000'))
 
 
