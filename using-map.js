@@ -1,81 +1,41 @@
-
-function citiesOnly(map) {
-    let arr = []
-    for (let i = 0; i < map.length; i++) {
-        arr.push(map[i].city)
-
-    }
-    return arru
+function citiesOnly(arr) {
+  return arr.map(obj => obj.city);
 }
-
-
 
 function upperCasingStates(arr) {
-    var stock = []
-    if (Array.isArray(arr)) {
-        var arru = []
-        for (let i = 0; i < arr.length; i++) {
-            var splt = arr[i].split(" ")
-            for (let j = 0; j < splt.length; j++) {
-
-                arru.push(capitalizeFirstLetter(splt[j]))
-            }
-            stock.push(arru.join(" "))
-            arru = []
-        }
-
-        return stock
-    }
+  return arr.map(state =>
+    state.split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ')
+  );
 }
-
-
 
 function capitalizeFirstLetter(val) {
-
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+function fahrenheitToCelsius(temps) {
+  return temps.map(temp => {
+    const f = parseInt(temp.replace(/[^0-9-]/g, ''), 10);
+    const c = Math.floor((f - 32) / 1.8);
+    return `${c}°C`;
+  });
+}
+function trimTemp(arr) {
+  return arr.map(obj => ({
+    ...obj,
+    temperature: obj.temperature.replace(/\s+/g, '')
+  }));
 }
 
 
-
-
-function fahrenheitToCelsius(f) {
-    var arr = []
-    for (let i = 0; i < f.length; i++) {
-        arr.push(Math.floor((parseInt(f[i]) - 32) / 1.8).toFixed() + '°C')
-    }
-
-    return arr
-
-}
-
-
-function trimTemp(map) {
-  let result = [];
-  for (let i = 0; i < map.length; i++) {
-    let city = map[i].city
-    let temperature = map[i].temperature.replace(/\s+/g, '')
-    result.push({
-      city: city,
-      temperature: temperature,
-    });
-  }
-
-  return result
-}
-
-
-function tempForecasts(map) {
-        let res = []
-
-        for (let i = 0; i < map.length; i++) {
-
-        res.push(Math.floor((parseInt(map[i].temperature) - 32) / 1.8).toFixed() + '°Celsius in '+ map[i].city + ", "+map[i].state)
-            
-        }
-
-
-        return res
-
-
-    
+function tempForecasts(arr) {
+  return arr.map(item => {
+    const f = parseInt(item.temperature.replace(/\s+/g, ''), 10);
+    const c = Math.floor((f - 32) / 1.8);
+    const state = item.state
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    return `${c}°Celsius in ${item.city}, ${state}`;
+  });
 }
