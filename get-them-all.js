@@ -5,7 +5,7 @@ export const getArchitects = () => {
 }
 
 export const getClassical=  () => {
-    const a1 = Array.from(document.getElementsByClassName("classical"))
+    const a1 = document.getElementsByClassName("classical")
     const a2 = Array.from(document.querySelectorAll("a:not(.classical)"))
     return [a1, a2]
 }
@@ -19,8 +19,8 @@ export const getActive=  () => {
 
 
 
-export const getBonannoPisano=  () => {
-    const a1 = Array.from(document.getElementById("BonannoPisano"))
+export const getBonannoPisano =  () => {
+    const a1 = document.getElementById("BonannoPisano")
     const a2 = Array.from(document.querySelectorAll(".classical.active:not(#BonannoPisano)"))
     return [a1, a2]
 }
