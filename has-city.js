@@ -1,7 +1,16 @@
-function hasCity(str) {
+function hasCity(country, cities) {
 
 
-        return str
+    return function (city) {
 
-    
+
+        return cities.includes(city)
+            ? `${city} is a city from ${country}`
+            : `${city} is not a city from ${country}`
+
+    }
+
+
 }
+
+
