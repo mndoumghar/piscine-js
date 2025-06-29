@@ -5,15 +5,15 @@ export const getArchitects = () => {
 }
 
 export const getClassical=  () => {
-    const a1 = Array.from(document.getElementsByTagName("classical"))
-    const a2 = Array.from(document.querySelectorAll("body *:not(classical)"))
+    const a1 = Array.from(document.getElementsByClassName("classical"))
+    const a2 = Array.from(document.querySelectorAll("body *:not(.classical)"))
     return [a1, a2]
 }
 
 
 export const getActive=  () => {
-    const a1 = Array.from(document.getElementsByTagName("classical.active"))
-    const a2 = Array.from(document.querySelectorAll("body *:not(classical.active)"))
+    const a1 = Array.from(document.querySelectorAll(".classical.active"))
+    const a2 = Array.from(document.querySelectorAll("body *:not(.classical.active)"))
     return [a1, a2]
 }
 
@@ -21,8 +21,8 @@ export const getActive=  () => {
 
 export const getBonannoPisano=  () => {
 
-    const a1 = Array.from(document.getElementsByTagName("BonannoPisano"))
-    const a2 = Array.from(document.querySelectorAll("body *:not(BonannoPisano)"))
+    const a1 = Array.from(document.getElementById("BonannoPisano"))
+    const a2 = Array.from(document.querySelectorAll("body *:not(#BonannoPisano)"))
     return [a1, a2]
 }
 
