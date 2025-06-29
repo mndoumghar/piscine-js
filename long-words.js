@@ -2,7 +2,7 @@
 
 function longWords(arr) {
 
-  return arr.every(word => word.length > 6 )
+  return arr.every(word => word.length > 4  )
 }
 
 function oneLongWord(arr) {
