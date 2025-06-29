@@ -1,12 +1,14 @@
-function flow(arr) {
-    return function (f, h) {
-        let value = f
-        let value2 = h
-        for (let i = 0; i < arr.length; i++) {
+function flow(funcs) {
+  return function(...a) {
 
-            value = arr[i](value,value2)
-        }
-        return value
+    let result = funcs[0](...a)
+
+    for (let i = 1; i < funcs.length; i++) {
+
+      result = funcs[i](result)
     }
-}
 
+    return result
+  }
+
+}
