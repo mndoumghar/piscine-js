@@ -4,8 +4,8 @@ export const getArchitects = () => {
     return [a1, a2]
 }
 
-export const getClassical=  () => {
-    const a1 = document.getElementsByClassName("classical")
+export const getClassical = () => {
+    const a1 = Array.from(document.getElementsByClassName("classical"))
     const a2 = Array.from(document.querySelectorAll("a:not(.classical)"))
     return [a1, a2]
 }
