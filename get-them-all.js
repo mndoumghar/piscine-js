@@ -13,7 +13,7 @@ export const getClassical=  () => {
 
 export const getActive=  () => {
     const a1 = Array.from(document.querySelectorAll(".classical.active"))
-    const a2 = Array.from(document.querySelectorAll("classical:not(.classical.active)"))
+    const a2 = Array.from(document.querySelectorAll(".classical:not(.classical.active)"))
     return [a1, a2]
 }
 
