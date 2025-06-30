@@ -23,24 +23,25 @@ export const pimp = () => {
     
   const button = document.querySelector(".button")
   if (i < styles.length && boo) {
+    
+    if (i === styles.length-1) {
+      button.classList.add(styles[i])
+      button.classList.add("unpimp")
+      boo = false
+      return
+    }
     button.classList.add(styles[i])
     i++
-    if (i === styles.length-1) {
-        button.classList.add(styles[i])
-        button.classList.add("unpimp")
-        boo = false
-       return
-    }
   } 
   if (!boo) {
     button.classList.remove(styles[i])
     i--
     if (i==-1) {
-        button.classList.remove("unpimp")
-                boo =true
-                i++
-                return
-
+      button.classList.remove("unpimp")
+      boo =true
+      i=0
+      return
+      
     }
   }
   
