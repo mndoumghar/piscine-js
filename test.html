@@ -1,7 +1,72 @@
-<div id="myDiv" data-color="blue" data-size="large"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="buildwall(31)">bulid</button>
+    <button onclick="repairWall()">repaired</button>
+    <table>
+        <tr>
+                <td>
+                    <div id="wall" ></div>
+                </td>
+        </tr>
+    </table>
+    
+    <script>
+        function buildwall(count) {
+            const wall = document.getElementById("wall")
+
+            wall.innerHTML = ''
+            for (let i = 1; i < count; i++) {
+                let dr = document.createElement('dr')
+                let brick = document.createElement('div')
+            brick.id = "brick-" + i
+                brick.innerHTML = "brick "+i
+                console.log(i)
+
+
+              //  Every 3rd Brick is a fondation bick
+                if (i%4 == 0 ) {
+                    brick.dataset.foundation = 'true'
+                    brick.style.backgroundColor = 'red'
+                }
+                brick.style.display ="flex"
+                brick.style.border = '1px  black'
+                brick.style.padding = "10px"
+                brick.style.margin= '5px'
+                wall.append(brick)
+
+            }
+            
+        }
+    </script>
+
+
 
 <script>
-    
+    function repairWall() {
+        const bricks = document.querySelectorAll('[data-foundation="true"]')
+        bricks.forEach(
+            b => {
+                b.innerHTML = " Now Editing"
+
+                b.dataset.repaired = "progresse"
+                b.style.backgroundColor = "yellow"
+            
+            }
+        )
+        
+    }
 </script>
 
+
+
+
+
+</body>
+</html>
 
