@@ -1,4 +1,4 @@
-export const styles = [
+const styles = [
   'one',
   'two',
   'three',
@@ -17,15 +17,28 @@ export const styles = [
 ]
 
 let i = 0
-
+var boo =true
 export const pimp = () => {
+    console.log(i);
+    
   const button = document.querySelector(".button")
-  if (i < styles.length) {
+  if (i < styles.length && boo) {
     button.classList.add(styles[i])
-    i++;
-  } else {
-
-    button.classList.remove(...styles)
-    i = 0
+    i++
+    if (i === styles.length-1) {
+        button.classList.add(styles[i])
+        button.classList.add("unpimp")
+        boo = false
+       return
+    }
+  } 
+  if (!boo) {
+    if (i==0) {
+        boo =true
+        button.classList.remove("unpimp")
+    }
+        button.classList.remove(styles[i])
+        i--
   }
+  
 }
