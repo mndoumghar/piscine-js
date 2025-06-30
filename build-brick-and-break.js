@@ -1,36 +1,36 @@
-//    import { build, repair, destroy } from './build-brick-and-break.js'
 
-var i = 0
-export const build = () => {
+var i = 1
+export const build = (conter) => {
     //<div id="brick-1"></div>
-    
-  const newDiv = document.createElement("div")
-      newDiv.classList.add('brick-'+i)
-
-
-  const newContent = document.createTextNode(i++)
-
-  newDiv.appendChild(newContent)
-
-
-  const currentDiv = document.getElementById("div1")
-  document.body.insertBefore(newDiv, currentDiv)
-
-
+  const root = document.querySelector("body")
+  const inter = setInterval(() => {
+    if (i <= conter) {
+      let div = document.createElement("div")
+      div.id = "brick-"+ i
+      div.innerHTML = i
+      root.append(div)
+           i++
+    } 
+  },100)
+  return inter
 }
-
-export const repair = () => {
-      setInterval(build, 100)
-          clearInterval(i)
-
-
-
-}
+  
+export const repair = (...ids) => {
+  ids.forEach((id) => {
+    let brick = document.getElementById(`${id}`);
+    if (brick.dataset.foundation == "true") {
+      brick.dataset.repaired = "in progress";
+    } else {
+      brick.dataset.repaired = "true";
+    }
+  });
+};
 
 export const destroy = () => {
   const bricks = document.querySelectorAll('.brick');
   if (bricks.length > 0) {
-    bricks[bricks.length - 1].remove();
+    bricks[bricks.length - 1].remove();     
+
   }
 
 
