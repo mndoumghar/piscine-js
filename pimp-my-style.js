@@ -33,12 +33,15 @@ export const pimp = () => {
     }
   } 
   if (!boo) {
-    if (i==0) {
-        boo =true
+    button.classList.remove(styles[i])
+    i--
+    if (i==-1) {
         button.classList.remove("unpimp")
+                boo =true
+                i++
+                return
+
     }
-        button.classList.remove(styles[i])
-        i--
   }
   
 }
