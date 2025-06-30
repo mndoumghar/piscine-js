@@ -7,7 +7,7 @@ export const generateLetters = () => {
     body.append(div)
     let res = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     length = res.length
-    for (let i = 1; i < 120; i++) {
+    for (let i = 1; i <= 120; i++) {
         const CreatDr = document.createElement('div')
 
         CreatDr.textContent = res.charAt(Math.random() * length)
