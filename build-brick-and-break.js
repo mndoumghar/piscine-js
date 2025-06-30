@@ -14,12 +14,14 @@ export const build = (conter) => {
       i++
     } 
   },100)
-  return inter
+
+
+        return inter
 }
   
 export const repair = (...ids) => {
   ids.forEach((id) => {
-    let brick = document.getElementById(`${id}`);
+    let brick = document.getElementById(`${id}`)
     if (brick.dataset.foundation == "true") {
       brick.dataset.repaired = "in progress";
     } else {
@@ -29,8 +31,8 @@ export const repair = (...ids) => {
 };
 
 export const destroy = () => {
-  const bricks = document.querySelectorAll('div[id^="brick-"]');
+  const bricks = document.querySelectorAll('div[id^="brick-"]')
   if (bricks.length > 0) {
-    bricks[bricks.length - 1].remove();     
+    bricks[bricks.length - 1].remove()
   }
 }

@@ -1,24 +1,34 @@
 
 
 
- export const generateLetters = () => {
-const body = document.querySelector("body")
-const div = document.createElement('div')
-body.append(div)
-
+export const generateLetters = () => {
+    const body = document.querySelector("body")
+    const div = document.createElement('div')
+    body.append(div)
+    let res = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    length = res.length
     for (let i = 1; i < 120; i++) {
         const CreatDr = document.createElement('div')
 
-        for (let j = 1; j <= 10; j++) {
-            CreatDr.  = j
-        
+        CreatDr.textContent = res.charAt(Math.random() * length)
+        CreatDr.style.fontSize = `${i}px`
+
+        if (i < 40) {
+            CreatDr.style.fontWeight = 300
         }
-            CreatDr.style.fontSize = "11px"  
+        else if (i < 80) {
+            CreatDr.style.fontWeight = 400
+        }
+        else {
+            CreatDr.style.fontWeight = 600
+        }
 
-                    body.append(CreatDr)
+
+        CreatDr.style.fontWeight =
+
+            body.append(CreatDr)
 
 
-    
     }
 
 
