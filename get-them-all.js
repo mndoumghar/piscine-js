@@ -11,17 +11,19 @@ export const getClassical = () => {
 }
 
 
-export const getActive=  () => {
+export const getActive = () => {
     const a1 = Array.from(document.querySelectorAll(".classical.active"))
     const a2 = Array.from(document.querySelectorAll(".classical:not(.classical.active)"))
     return [a1, a2]
 }
 
 
-
-export const getBonannoPisano =  () => {
+export const getBonannoPisano = () => {
     const a1 = document.getElementById("BonannoPisano")
     const a2 = Array.from(document.querySelectorAll(".classical.active:not(#BonannoPisano)"))
     return [a1, a2]
 }
+
+
+
 
