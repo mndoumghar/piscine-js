@@ -20,19 +20,10 @@ function omit(obj, keysToOmit) {
         keysToOmit = [keysToOmit];
     }
 
-    const result = {};
-
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key) && !keysToOmit.includes(key)) {
-            result[key] = obj[key]
-        }
-    }
-
-    return result;
+   
 }
 
 
-console.log(omit({ something: 5, __proto__: { d: 6 } }, 'something'));
 
  
 
