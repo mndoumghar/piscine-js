@@ -16,25 +16,22 @@ function pick(obj, arr) {
 
 }
 
-
 function omit(obj, arr) {
     if (!Array.isArray(arr)) {
-        arr = [arr]
+        arr = [arr];
     }
 
-    let stock = {}
+    const result = {};
 
-    for (const i of arr) {
-        if (!obj.hasOwnProperty(i)) {
-            stock[i] = obj[i]
-            return obj
-            
+    for (const key in obj) {
+        if (!arr.includes(key)) {
+            result[key] = obj[key];
         }
-
     }
-    return stock
 
+    return result;
 }
+
 
 console.log(omit({drill: 'bosh'}, ['grinders', 'saws']));
 
