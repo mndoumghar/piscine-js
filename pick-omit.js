@@ -15,17 +15,16 @@ function pick(obj, arr) {
 
 
 }
-
-function omit(obj, arr) {
-    if (!Array.isArray(arr)) {
-        arr = [arr];
+function omit(obj, keysToOmit) {
+    if (!Array.isArray(keysToOmit)) {
+        keysToOmit = [keysToOmit];
     }
 
     const result = {};
 
     for (const key in obj) {
-        if (!arr.includes(key)) {
-            result[key] = obj[key];
+        if (obj.hasOwnProperty(key) && !keysToOmit.includes(key)) {
+            result[key] = obj[key]
         }
     }
 
@@ -33,7 +32,7 @@ function omit(obj, arr) {
 }
 
 
-console.log(omit({drill: 'bosh'}, ['grinders', 'saws']));
+console.log(omit({ something: 5, __proto__: { d: 6 } }, 'something'));
 
  
 
