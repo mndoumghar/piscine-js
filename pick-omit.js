@@ -27,12 +27,19 @@ function omit(obj, arr) {
     for (const i of arr) {
         if (!obj.hasOwnProperty(i)) {
             stock[i] = obj[i]
+            if (obj[i] === undefined) {
+                return {}
+            }
         }
 
     }
     return stock
 
 }
-console.log(omit({ a: "fdgfd" }, 'graphic'));
+ obj = {
+drill: 'bosh'
+ }
+   
+console.log(omit(obj, ['grinders', 'saws']));
 
 
