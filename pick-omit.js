@@ -36,10 +36,5 @@ function omit(obj, arr) {
     return stock
 
 }
- obj = {
-drill: 'bosh'
- }
-   
-console.log(omit(obj, ['grinders', 'saws']));
-
+ 
 
