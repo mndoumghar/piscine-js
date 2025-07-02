@@ -1,20 +1,24 @@
+
 function pick(obj, arr) {
+    let stock = {}
+    for (const i of arr) {
+        if (obj.hasOwnProperty(i)) {
+            stock[i] = obj[i]
+        }
+
+    }
+    return stock
+}
+
+
+function omit(obj, arr) {
+   let stock = {}
     for (const i of arr) {
         if (!obj.hasOwnProperty(i)) {
-            return obj
+            stock[i] = obj[i]
         }
-        
+
     }
-    return obj
+    return stock
 }
 
-function omit(obj,key) {
-    return true
-}
-
-const myObject = { a: 1, b: 2, c: 3 };
-const keyArray1 = ["a", "b", "c"];
-const keyArray2 = ["a", "b", "d"];
-
-console.log(pick(myObject, keyArray1));
-console.log(pick(myObject, keyArray2));
