@@ -11,8 +11,14 @@ function pick(obj, arr) {
         }
         return stock
     } else {
+            let stock = {}
 
-        return {arr: false}
+        for (let i = 0; i < arr.length; i++) {
+            stock[arr] =false
+            
+        } 
+            return stock
+        
 
     }
 
@@ -20,8 +26,8 @@ function pick(obj, arr) {
 
 
 function omit(obj, arr) {
-    let stock = {}
     if (Array.isArray(arr)) {
+    let stock = {}
 
         for (const i of arr) {
             if (!obj.hasOwnProperty(i)) {
@@ -31,7 +37,17 @@ function omit(obj, arr) {
         }
         return stock
     } else {
-        return {arr: false}
+            let stock = {}
+
+        for (let i = 0; i < arr.length; i++) {
+            stock[arr] =false
+            
+        } 
+            return stock
+        
+
     }
 }
+console.log(pick({a: "dd"}, 'ageVerified'));
+
 
