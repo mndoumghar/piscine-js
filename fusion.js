@@ -23,7 +23,10 @@ function fusion(object1, object2) {
                 } else if (typeof res[key] === 'number' && typeof value === 'number') {
 
                     res[key] = res[key] + value
-                } 
+                } else {
+
+                    res[key] = value
+                }
             } else {
                
                     res[key] = value
