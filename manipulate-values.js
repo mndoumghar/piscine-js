@@ -10,18 +10,9 @@ function mapValues(obj, gg) {
     return Object.fromEntries(ff)
 }
 
-function reduceValues(obj, gg) {
+function reduceValues(obj, gg,i=0) {
     const res = Object.values(obj)
 
-    return res.reduce(gg)
+    return res.reduce(gg,i)
 
 }
-
-const nutrients = { carbohydrates: 12, protein: 20, fat: 5 }
-
-
-console.log(filterValues(nutrients, (nutrient) => nutrient <= 12))
-
-console.log(mapValues(nutrients, (v) => v + 1))
-
-console.log(reduceValues(nutrients, (acc, cr) => acc + cr))
