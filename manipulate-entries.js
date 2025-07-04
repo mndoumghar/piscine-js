@@ -47,6 +47,7 @@ function cartTotal(cart) {
 
     for (const [key, value] of Object.entries(nutrition)) {
       totalNutrition[key] = (qty / 100) * value
+      totalNutrition[key]= Math.round(total * 100)/100
     }
 
     return [item, totalNutrition]
