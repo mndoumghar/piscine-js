@@ -1,8 +1,8 @@
 
-function deepCopy(obj) {
+function deepCopy(x, obj) {
 
 
-return structuredClone(deepCopy(obj))
+return structuredClone(deepCopy(obj)-x)
 
 
     // let res = []
