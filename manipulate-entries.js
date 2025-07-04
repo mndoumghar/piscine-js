@@ -1,12 +1,11 @@
 
-function filterEntries(obj,ff) {
-
-    const entries = Object.entries(obj)
-    const filterredEntries = entries.filter(([key, value]) =>ff(key, value)    
-)
-
-    return  Object.fromEntries(filterredEntries)
+function filterEntries(obj, ff) {
+  const entries = Object.entries(obj);
+  const filteredEntries = entries.filter(entry => ff(entry));
+  return Object.fromEntries(filteredEntries);
 }
+
+
 function mapEntries(obj, ff) {
     const entries = Object.entries(obj)
     const mapped = entries.map(([key, value]) => ff(key, value))
@@ -24,8 +23,6 @@ function reduceEntries(obj, ff, i) {
 function totalCalories(cart) {
 
     return reduceEntries(cart, (acc, key, value) => acc + value.calories,0)
-
-
     
 }
 function lowCarbs(cart) {
