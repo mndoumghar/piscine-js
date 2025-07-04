@@ -32,24 +32,23 @@ function totalCalories(cart) {
 function lowCarbs(cart) {
   return filterEntries(cart, ([item, qty]) => {
     const carbsPer100 = nutritionDB[item]?.carbs || 0
-    const totalCarbs = (qty / 100) * carbsPer100
-    return  Math.round(totalCarbs < 50)
+    const total = (qty / 100) * carbsPer100
+    return  Math.round(total < 50)
   })
 }
-
 
 
 
 function cartTotal(cart) {
   return mapEntries(cart, ([item, qty]) => {
     const nutrition = nutritionDB[item] || {}
-    const totalNutrition = {}
+    const res = {}
 
     for (const [key, value] of Object.entries(nutrition)) {
-      totalNutrition[key] = (qty / 100) * value
-      totalNutrition[key]= Math.round(total * 100)/100
+      const total = (qty / 100) * value
+      res[key] = Math.round(total * 100) / 100
     }
 
-    return [item, totalNutrition]
+    return [item, res]
   })
 }
