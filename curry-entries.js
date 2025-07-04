@@ -13,21 +13,13 @@ function mapCurry(gg) {
         return Object.fromEntries(ff);
     };
 }
-
 function reduceCurry(gg, i = '') {
-
-    return function (obj) {
-
-        const res = Object.entries(obj);
-        if (res.length === 0) return '';
-
-        
-         return res.reduce((acc, cr) => acc === '' ? cr : gg(acc, cr), i);
-
-
-    }
-
+  return function (obj) {
+    const res = Object.entries(obj);
+    return res.reduce((acc, cr) => gg(acc, cr), i);
+  };
 }
+
 
 function filterCurry(funn) {
 
