@@ -38,17 +38,19 @@ function lowCarbs(cart) {
 }
 
 
-
 function cartTotal(cart) {
+  const decimals = 3;
+  const factor = Math.pow(10, decimals);
+
   return mapEntries(cart, ([item, qty]) => {
-    const nutrition = nutritionDB[item] || {}
-    const res = {}
+    const nutrition = nutritionDB[item] || {};
+    const totalNutrition = {};
 
     for (const [key, value] of Object.entries(nutrition)) {
-      const total = (qty / 100) * value
-      res[key] = Math.round(total * 100) / 100
+      const total = (qty / 100) * value;
+      totalNutrition[key] = Math.round(total * factor) / factor;
     }
 
-    return [item, res]
-  })
+    return [item, totalNutrition];
+  });
 }
