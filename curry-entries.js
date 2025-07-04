@@ -14,7 +14,7 @@ function mapCurry(gg) {
     };
 }
 
-function reduceCurry(gg, i = 0) {
+function reduceCurry(gg, i = '') {
 
     return function (obj) {
 
