@@ -8,31 +8,33 @@ function filterEntries(obj, ff) {
 
 function mapEntries(obj, ff) {
     const entries = Object.entries(obj)
-    const mapped = entries.map(([key, value]) => ff(key, value))
+    const mapped = entries.map(entry => ff(entry))
     return Object.fromEntries(mapped)
 }
 
+
 function reduceEntries(obj, ff, i) {
-  const entries = Object.entries(obj)
+  const entries = Object.entries(obj);
   return entries.reduce(
-    (accumulator, [key, value]) => ff(accumulator, key, value),
+    (accumulator, entry) => ff(accumulator, entry),
     i
-  )
+  );
 }
+
 
 function totalCalories(cart) {
 
-    return reduceEntries(cart, (acc, key, value) => acc + value.calories,0)
+    return reduceEntries(cart, (acc, [key, value]) => acc + value.calories,0)
     
 }
 function lowCarbs(cart) {
-    return filterEntries(cart,(key, value ) => value.carbs<=50)
+    return filterEntries(cart,([key, value] ) => value.carbs<=50)
 
 }
 
 function cartTotal(cart) {
     
-    return mapEntries(cart, (key,value) => {
+    return mapEntries(cart, ([key,value]) => {
         const total = Object.values(value).reduce((acc, num)=> acc+num, 0)
         return [key,{total}]
     })
