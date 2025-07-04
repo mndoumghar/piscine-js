@@ -1,4 +1,4 @@
-function efaultCurry(obj1) {
+function defaultCurry(obj1) {
 
     return function name(obj2) {
 
