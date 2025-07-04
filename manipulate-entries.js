@@ -21,17 +21,19 @@ function reduceEntries(obj, ff, i) {
   );
 }
 
-
 function totalCalories(cart) {
-
-    return reduceEntries(cart, (acc, [key, value]) => acc + value.calories,0)
-    
+  return reduceEntries(cart, (acc, [item, qty]) => {
+    const calPer100 = nutritionDB[item]?.calories || 0;
+    return acc + (qty / 100) * calPer100;
+  }, 0);
 }
 
 
 function lowCarbs(cart) {
-  return filterEntries(cart, ([key, value]) => {
-    return typeof value === 'object' && value.carbs < 50;
+  return filterEntries(cart, ([item, qty]) => {
+    const carbsPer100 = nutritionDB[item]?.carbs || 0;
+    const totalCarbs = (qty / 100) * carbsPer100;
+    return totalCarbs < 50;
   });
 }
 
@@ -39,9 +41,14 @@ function lowCarbs(cart) {
 
 
 function cartTotal(cart) {
-    
-    return mapEntries(cart, ([key,value]) => {
-        const total = Object.values(value).reduce((acc, num)=> acc+num, 0)
-        return [key,{total}]
-    })
+  return mapEntries(cart, ([item, qty]) => {
+    const nutrition = nutritionDB[item] || {};
+    const totalNutrition = {};
+
+    for (const [key, value] of Object.entries(nutrition)) {
+      totalNutrition[key] = (qty / 100) * value;
+    }
+
+    return [item, totalNutrition];
+  });
 }
