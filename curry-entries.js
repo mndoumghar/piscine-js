@@ -42,12 +42,11 @@ reduceCurry((acc, [k, v]) => (acc += v))({ a: 1, b: 2, c: 3 }, 0)
 );
 
 
- function reduceScore(personnel) {
+ function reduceScore(personnel, i) {
   const res = filterCurry(([key, val]) => val.isForceUser)(personnel);
-  console.log(res);
   
 
-  return reduceCurry((acc, [key, val]) => acc + (val.pilotingScore + val.shootingScore)  )(res, 0);
+  return reduceCurry((acc, [key, val]) => acc + (val.pilotingScore + val.shootingScore)  )(res, i);
 }
 
 
@@ -74,15 +73,24 @@ reduceCurry((acc, [k, v]) => (acc += v))({ a: 1, b: 2, c: 3 }, 0)
   return filterCurry(([_, val]) => val.isForceUser == true&& val.shootingScore >= 80)(personnel);
 }
 
+// function mapAverage(personnel) {
+//     const res = reduceCurry((acc, [key, val]) => acc + (val.pilotingScore + val.shootingScore)) (personnel,0)
+//     return res/5
+// }
+
+    
+
+    
+
 function mapAverage(personnel) {
-    const res = reduceCurry((acc, [key, val]) => acc + (val.pilotingScore + val.shootingScore)) (personnel,0)
-    return res/5
+  return mapCurry(([key, val]) => [
+    key,
+    {
+      ...val,
+      averageScore: (val.pilotingScore + val.shootingScore) / 2,
+    },
+  ])(personnel);
 }
-
-    
-
-    
-
 
 
 
