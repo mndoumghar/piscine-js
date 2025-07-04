@@ -1,16 +1,20 @@
-function deepCopy(obj) {
-    if (Array.isArray(obj) || obj !== undefined|| typeof obj ==="string" || typeof obj === "int") {
+let res = []
 
-        return  deepCopy(structuredClone(obj)) 
+function deepCopy(d, point) {
 
+    if (d == 0) {
+        res.push(point)
     } else {
-      return obj  
+        ex1 = [...point]
+        ex1.push(0)
+
+        ex2 = [...point]
+        ex2.push(1)
+
+        deepCopy(d - 1, ex1)
+        deepCopy(d - 1, ex2)
+
     }
+
 }
 
-console.log(
-
-    deepCopy({ user: 'mika', age: 37 }))
-
-
-//  copyAndCompare(eq, { user: 'mika', age: 37 })
