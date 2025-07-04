@@ -5,7 +5,7 @@ function filterEntries(obj,ff) {
     const filterredEntries = entries.filter(([key, value]) =>ff(key, value)    
 )
 
-    return filterredEntries
+    return  Object.fromEntries(filterredEntries)
 }
 function mapEntries(obj, ff) {
     const entries = Object.entries(obj)
