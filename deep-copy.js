@@ -1,7 +1,7 @@
 function deepCopy(obj) {
     if (Array.isArray(obj)) {
 
-        return structuredClone(obj)
+        return  deepCopy(structuredClone(obj)) 
 
     } else {
       return obj  
