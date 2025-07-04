@@ -5,27 +5,18 @@ function filterKeys(obj, funn) {
     return ff
 }
 
-console.log(filterKeys(nutrients, (key) => /protein/.test(key)))
 
 function mapKeys(obj, gg) {
     const ff = Object.entries(obj).map(([key, value]) => [gg(key), value])
     return Object.fromEntries(ff)
 }
 
-console.log(mapKeys(nutrients, (k) => `-${k}`))
 
 
-function reduceKeys(obj, gg) {
+function reduceKeys(obj, gg,i= '') {
 
     const res = Object.keys(obj)
     if (res.length === 0) return '';
 
-    return res.reduce(gg)
+    return res.reduce(gg,i)
 }
-
-console.log(
-
-    reduceKeys(nutrients, (acc, cr) => acc.concat(', ', cr))
-
-
-)
