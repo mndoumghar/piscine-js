@@ -11,12 +11,10 @@ function mapKeys(obj, gg) {
     return Object.fromEntries(ff)
 }
 
-
-
-function reduceKeys(obj, gg,i= '') {
-
-    const res = Object.keys(obj)
+function reduceKeys(obj, gg, i = '') {
+    const res = Object.keys(obj);
     if (res.length === 0) return '';
 
-    return res.reduce(gg,i)
+    return res.reduce((acc, cr) => acc === '' ? cr : gg(acc, cr), i);
 }
+
