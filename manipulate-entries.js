@@ -27,18 +27,14 @@ function totalCalories(cart) {
     return reduceEntries(cart, (acc, [key, value]) => acc + value.calories,0)
     
 }
+
+
 function lowCarbs(cart) {
   return filterEntries(cart, ([key, value]) => {
-    
-    if (typeof value === 'object' && value !== null) {
-      return value.carbs <= 50;
-    }
-    if (typeof value === 'number') {
-      return value <= 50;
-    }
-    return false;
+    return typeof value === 'object' && value.carbs < 50;
   });
 }
+
 
 
 
