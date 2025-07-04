@@ -28,7 +28,10 @@ function totalCalories(cart) {
     
 }
 function lowCarbs(cart) {
-    return filterEntries(cart,([key, value] ) => value.carbs<=50)
+    return filterEntries(cart,([key, value] ) => {
+            return  typeof value==='object'   &&value.carbs<=50
+
+    })
 
 }
 
