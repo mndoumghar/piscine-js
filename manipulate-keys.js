@@ -15,16 +15,17 @@ function mapKeys(obj, gg) {
 console.log(mapKeys(nutrients, (k) => `-${k}`))
 
 
-function reduceKeys(obj, gg, initialValue= '') {
+function reduceKeys(obj, gg) {
 
     const res = Object.keys(obj)
+    if (res.length === 0) return '';
 
-    return res.reduce(gg, initialValue)
+    return res.reduce(gg)
 }
 
 console.log(
 
-    reduceKeys(nutrients, (acc, cr) => acc.concat(', ', cr), '')
+    reduceKeys(nutrients, (acc, cr) => acc.concat(', ', cr))
 
 
 )
