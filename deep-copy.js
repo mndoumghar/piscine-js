@@ -4,6 +4,7 @@ function deepCopy(obj) {
   }
 
   if (obj instanceof RegExp) {
+    
     return new RegExp(obj)
   }
 
