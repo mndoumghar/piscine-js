@@ -16,7 +16,6 @@ function throttle(f, wait, options = {}) {
     const now = Date.now();
     lastArgs = args;
 
-    ////first call or wait time has passed
     if (lastCallTime === null || now - lastCallTime >= wait) {
       if (timer) {
         clearTimeout(timer);

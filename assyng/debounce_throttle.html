@@ -2,6 +2,7 @@
 <title>how to learn deponc throttle</title>
 
 <body>
+
     <br><br>
     <center>
         <div class="input">
@@ -68,7 +69,79 @@
 
 
     </center>
+ <style>
+      body {  height: 2000px; } /* Bach n9dro nscrolliw */
+
+    </style>
+
+
+   
+
+
 
 </body>
 
 </html>
+
+
+<script>
+
+function throttle(f, wait, options = {}) {
+  let lastCallTime = null;
+  let timer = null;
+  let lastArgs = null;
+  
+  const leading = options.leading !== false;
+  const trailing = options.trailing !== false;
+
+  function callFn(args) {
+    lastCallTime = Date.now();
+    f(...args);
+    lastArgs = null;
+  }
+
+  return function (...args) {
+    const now = Date.now();
+    lastArgs = args;
+
+    // First call or wait time has passed
+    if (lastCallTime === null || now - lastCallTime >= wait) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      if (leading) {
+        callFn(args);
+      }
+    } 
+    // Set up trailing call if needed
+    else if (!timer && trailing) {
+      timer = setTimeout(() => {
+        timer = null;
+        if (trailing && lastArgs) {
+          callFn(lastArgs);
+        }
+      }, wait - (now - lastCallTime));
+    }
+  };
+}
+
+function opThrottle(f, wait, options) {
+  return throttle(f, wait, options);
+}
+
+
+
+// Throttled function that can only run once per second
+const throttledFn = throttle(console.log, 1000, { 
+  leading: true,  // Run immediately on first call
+  trailing: true  // Run last call after wait period
+});
+
+throttledFn("Hello");  // Runs immediately (leading)
+throttledFn("Hi");     // Ignored
+throttledFn("Hey");    // Ignored
+// After 1 second...
+// "Hey" runs (trailing)
+
+</script>
