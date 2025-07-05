@@ -2,8 +2,11 @@ function replica(output, ...sources) {
   for (const source of sources) {
     for (const key in source) {
       if (typeof source[key] === 'object' && source[key] !== null && !(source[key] instanceof RegExp)) {
-        if (!output[key] || typeof output[key] !== 'object' || output[key] instanceof RegExp) {
-          output[key] = Array.isArray(source[key]) ? [] : {};
+        if (Array.isArray(source[key]) && (!output[key] || !Array.isArray(output[key]))) {
+          output[key] = [];
+        }
+        else if (!Array.isArray(source[key]) && (!output[key] || Array.isArray(output[key]))) {
+          output[key] = {};
         }
         replica(output[key], source[key]);
       } else {
@@ -17,7 +20,7 @@ function replica(output, ...sources) {
 console.log(
 
 
-  replica({ reg: /hello/ })
+  (replica({ a: { b: [2] } }, { a: [4] }).a, [4])
 
 )
 
