@@ -1,0 +1,88 @@
+<html>
+<title>how to learn deponc throttle</title>
+
+<body>
+    <br><br>
+    <center>
+        <div class="input">
+            <input type="text" id="search">
+        </div>
+        <br><br><br>
+        <label for="">input : </label>
+        <dive class=" search" id="idsearch"></dive><br><br>
+
+        <div id="lov"> </div>
+        <div id="throttle"></div>
+
+        <script>
+            const idsearch = document.getElementById("idsearch")
+            const input = document.getElementById("search")
+            const deponse = document.getElementById("lov")
+            const throttle = document.getElementById("throttle")
+            const updateDeponceText = debounce(f => {
+                deponse.textContent = f
+                deponse.style.color = "green"
+            })
+            const updateThrottleText = throttl(f => {
+                throttle.textContent = f
+                throttle.style.color = "blue"
+            })
+
+
+
+            input.addEventListener("input", v => {
+                idsearch.innerHTML = v.target.value
+                idsearch.style.color = "red"
+                updateDeponceText(v.target.value)
+                updateThrottleText(v.target.value)
+
+
+            })
+
+
+            function debounce(f, wait = 1000) {
+                let res
+
+                return function (...arg) {
+                    clearTimeout(res)
+                    res = setTimeout(() => f(...arg), wait)
+                }
+            }
+
+
+            function throttl(f, wait = 1000) {
+                let shouldwiat = false
+                let  waitainArg
+
+               const  timoutFun = () => {
+                    if (waitainArg == null) {
+                        shouldwiat = false
+                    } else {
+                        f(...waitainArg)
+                        waitainArg = null
+                        setTimeout(timoutFun,wait)
+                    }
+               }
+                return function (...arg) {
+                    if (shouldwiat) {
+                        waitingArgs = arg
+                        return
+
+                    }
+
+                    f(...arg)
+                    shouldwiat = true
+                    setTimeout(timoutFun, wait)
+
+                }
+            }
+        </script>
+
+        </dive>
+
+
+    </center>
+
+</body>
+
+</html>

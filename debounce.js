@@ -2,6 +2,7 @@
 function debounce(f, wait, options = {}) {
     let bool;
     let v1 = options.leading && !bool;
+    
     let lastArgs;
     return function (...args) {
         lastArgs = args;
