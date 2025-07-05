@@ -1,12 +1,17 @@
 function replica(output, ...sources) {
 
+if (output instanceof RegExp) {
+    return {}
+}
+
+
   for (const source of sources) {
 
     for (const key in source) {
       
-      if (typeof source[key] === 'object' && source[key] !== null) {
+      if (typeof source[key] === 'object' && source[key] !== null ) {
 
-        if (!output[key] || typeof output[key] !== 'object') {
+        if (!output[key] || typeof output[key] !== 'object' || output[key] instanceof RegExp) {
 
           output[key] = {};
         }
@@ -25,6 +30,7 @@ function replica(output, ...sources) {
 console.log(
 
 
-  replica({ a: { b: 1, c: 2 } }, { a: { c: 23 } }) // { a: { b: 1, c: 23 } }
+  replica({ con: console.log }, { reg: /hello/ })
 
 )
+
