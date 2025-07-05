@@ -51,31 +51,17 @@
 
 
             function throttl(f, wait = 1000) {
-                let shouldwiat = false
-                let  waitainArg
-
-               const  timoutFun = () => {
-                    if (waitainArg == null) {
-                        shouldwiat = false
-                    } else {
-                        f(...waitainArg)
-                        waitainArg = null
-                        setTimeout(timoutFun,wait)
+                let lastTime = 0;
+                return function (...args) {
+                    const now = Date.now();
+                    if (now - lastTime >= wait) {
+                        lastTime = now;
+                        fn(...args);
                     }
-               }
-                return function (...arg) {
-                    if (shouldwiat) {
-                        waitainArg = arg
-                        return
-
-                    }
-
-                    f(...arg)
-                    shouldwiat = true
-                    setTimeout(timoutFun, wait)
-
-                }
+                };
             }
+
+
         </script>
 
         </dive>

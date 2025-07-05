@@ -1,42 +1,38 @@
 function throttle(f, wait, options = {}) {
-  let timer = Date.now()
-  let lastArgs = null
-  let shouldCall = !options.leading
+  let timer = null;
+  let lastArgs = null;
+  let shouldCall = !(options.leading);
 
   return function (...args) {
     if (timer) {
-      if (options.trailing) lastArgs = args
-      return
+      if (options.trailing) lastArgs = args;
+      return;
     }
 
     if (!shouldCall) {
-      shouldCall = true
+      shouldCall = true;
       timer = setTimeout(() => {
-        timer = null
+        timer = null;
         if (options.trailing && lastArgs) {
-          f(...lastArgs)
-          lastArgs = null
-          timer = setTimeout(() => {
-            timer = null
-          }, wait)
+          f(...lastArgs);
+          lastArgs = null;
         }
-      }, wait)
-      return
+      }, wait);
+      return;
     }
 
-    f(...args)
+    f(...args);
+
     timer = setTimeout(() => {
-      timer = null
+      timer = null;
       if (options.trailing && lastArgs) {
-        f(...lastArgs)
-        lastArgs = null
-        timer = setTimeout(() => {
-          timer = null
-        }, wait)
+        f(...lastArgs);
+        lastArgs = null;
       }
-    }, wait)
-  }
+    }, wait);
+  };
 }
+
 
 function opThrottle(f, wait,options) {
     
