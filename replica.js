@@ -1,50 +1,30 @@
 
-function deepCopy(obj) {
-  if (typeof obj !== "object" || obj === null) {
-    return obj;
-  }
 
-  if (obj instanceof RegExp) {
-    
-    return new RegExp(obj)
-  }
+function replica(output, obj) {
 
-  if (typeof obj === "function") {
-    return obj
-  }
 
-  if (Array.isArray(obj)) {
-    let arr = [];
-    for (let i = 0; i < obj.length; i++) {
-      arr[i] = deepCopy(obj[i]);
-    }
-    return arr
-  }
-
-  const copy = {};
   for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      copy[key] = deepCopy(obj[key]);
+
+    if (typeof obj[key] === 'object') {
+
+      output[key] = replica(output[key], obj[key])
+
+
+    } else {
+
+      output[key] = obj[key]
     }
   }
-  return copy;
+
+  return output;
 }
 
 
-
-
-function replica(assign,obj) {
-
-
-  const ss = structuredClone(assign,obj)
-
-        return (deepCopy(ss),deepCopy(obj))  
-}
 
 
 console.log(
 
 
-replica({ a: { b: 1, c: 2 } }, { a: { c: 23 } }) // { a: { b: 1, c: 23 } }
+  replica({ a: { b: 1, c: 2 } }, { a: { c: 23 } }) // { a: { b: 1, c: 23 } }
 
 )
