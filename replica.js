@@ -1,25 +1,25 @@
+function replica(output, ...sources) {
 
+  for (const source of sources) {
 
-function replica(output, obj) {
+    for (const key in source) {
+      
+      if (typeof source[key] === 'object' && source[key] !== null) {
 
+        if (!output[key] || typeof output[key] !== 'object') {
 
-  for (const key in obj) {
+          output[key] = {};
+        }
+        replica(output[key], source[key]);
 
-    if (typeof obj[key] === 'object') {
+      } else {
 
-      output[key] = replica(output[key], obj[key])
-
-
-    } else {
-
-      output[key] = obj[key]
+        output[key] = source[key];
+      }
     }
   }
-
   return output;
 }
-
-
 
 
 console.log(
