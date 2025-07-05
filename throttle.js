@@ -1,28 +1,41 @@
-function throttle(f, wait) {
-    let shouldwiat = false
-    let waitainArg
+function throttle(f, wait, options = {}) {
+  let timer = null
+  let lastArgs = null
+  let shouldCall = !options.leading
 
-    const timoutFun = () => {
-        if (waitainArg == null) {
-            shouldwiat = false
-        } else {
-            f(...waitainArg)
-            waitainArg = null
-            setTimeout(timoutFun, wait)
-        }
+  return function (...args) {
+    if (timer) {
+      if (options.trailing) lastArgs = args
+      return
     }
-    return function (...arg) {
-        if (shouldwiat) {
-            waitainArg = arg
-            return
 
+    if (!shouldCall) {
+      shouldCall = true
+      timer = setTimeout(() => {
+        timer = null
+        if (options.trailing && lastArgs) {
+          f(...lastArgs)
+          lastArgs = null
+          timer = setTimeout(() => {
+            timer = null
+          }, wait)
         }
-
-        f(...arg)
-        shouldwiat = true
-        setTimeout(timoutFun, wait)
-
+      }, wait)
+      return
     }
+
+    f(...args)
+    timer = setTimeout(() => {
+      timer = null
+      if (options.trailing && lastArgs) {
+        f(...lastArgs)
+        lastArgs = null
+        timer = setTimeout(() => {
+          timer = null
+        }, wait)
+      }
+    }, wait)
+  }
 }
 
 function opThrottle(f, wait) {
