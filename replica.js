@@ -1,6 +1,7 @@
 
 
-function replica(obj) {
+function replica(assign,obj,obj2) {
     
-        return structuredClone(obj)
+        return Object.assign(assign, obj,obj2)
 }
+
