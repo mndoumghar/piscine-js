@@ -1,13 +1,12 @@
-
-function opDebounce(options) {
-    return options
-}
-
 function debounce(f, wait, options) {
     let res
-    return function(...arg) {
+    return function (...arg) {
         clearTimeout(res)
         res = setTimeout(() => f(...arg), wait)
         return res
     }
+}
+
+function opDebounce(f, wait, options) {
+         return debounce(f, wait, options);
 }
