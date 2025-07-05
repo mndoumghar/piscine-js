@@ -1,45 +1,44 @@
 function throttle(f, wait, options = {}) {
-  let timer = null
+  let timer = Date.now()
   let lastArgs = null
-  let lastCallTime = 0
-  let leading = options.leading ?? true
-  let trailing = options.trailing ?? true
+  let shouldCall = !options.leading
 
   return function (...args) {
-    const now = Date.now()
-
-    if (!lastCallTime && !leading) {
-      lastCallTime = now
+    if (timer) {
+      if (options.trailing) lastArgs = args
+      return
     }
 
-    const remaining = wait - (now - lastCallTime)
-
-    if (remaining <= 0 || remaining > wait) {
-      if (timer) {
-        clearTimeout(timer)
+    if (!shouldCall) {
+      shouldCall = true
+      timer = setTimeout(() => {
         timer = null
-      }
+        if (options.trailing && lastArgs) {
+          f(...lastArgs)
+          lastArgs = null
+          timer = setTimeout(() => {
+            timer = null
+          }, wait)
+        }
+      }, wait)
+      return
+    }
 
-      lastCallTime = now
-      f(...args)
-    } else if (trailing) {
-      lastArgs = args
-
-      if (!timer) {
+    f(...args)
+    timer = setTimeout(() => {
+      timer = null
+      if (options.trailing && lastArgs) {
+        f(...lastArgs)
+        lastArgs = null
         timer = setTimeout(() => {
           timer = null
-          lastCallTime = leading === false ? 0 : Date.now()
-          if (lastArgs) {
-            f(...lastArgs)
-            lastArgs = null
-          }
-        }, remaining)
+        }, wait)
       }
-    }
+    }, wait)
   }
 }
 
 function opThrottle(f, wait,options) {
-
+    
     return throttle(f, wait,options)
 }
