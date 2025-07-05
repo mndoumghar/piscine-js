@@ -1,47 +1,43 @@
 function throttle(f, wait, options = {}) {
-    let lastCallTime = 0;
-    let timer = null;
-    let lastArgs = null;
+  let lastCallTime = null;
+  let timer = null;
+  let lastArgs = null;
+  
+  const leading = options.leading !== false;
+  const trailing = options.trailing !== false;
 
-    const leading = options.leading !== false;
-    const trailing = options.trailing !== false;
+  function callFn(args) {
+    lastCallTime = Date.now();
+    f(...args);
+    lastArgs = null;
+  }
 
-    function callFn(args) {
-        lastCallTime = Date.now();
-        f(...args);
+  return function (...args) {
+    const now = Date.now();
+    lastArgs = args;
+
+    ////first call or wait time has passed
+    if (lastCallTime === null || now - lastCallTime >= wait) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      if (leading) {
+        callFn(args);
+      }
+    } 
+    
+    else if (!timer && trailing) {
+      timer = setTimeout(() => {
+        timer = null;
+        if (trailing && lastArgs) {
+          callFn(lastArgs);
+        }
+      }, wait - (now - lastCallTime));
     }
-
-    return function (...args) {
-        const now = Date.now();
-        lastArgs = args;
-
-
-        if (!lastCallTime && !leading) {
-            lastCallTime = now;
-        }
-
-        const timeSinceLastCall = now - lastCallTime;
-        const remainingTime = wait - timeSinceLastCall;
-
-        if (remainingTime <= 0 || remainingTime > wait) {
-            if (timer) {
-                clearTimeout(timer);
-                timer = null;
-            }
-            callFn(args);
-        }
-        else if (!timer && trailing) {
-            timer = setTimeout(() => {
-                timer = null;
-                if (trailing && lastArgs) {
-                    callFn(lastArgs);
-                    lastArgs = null;
-                }
-            }, remainingTime);
-        }
-    };
+  };
 }
 
 function opThrottle(f, wait, options) {
-    return throttle(f, wait, options);
+  return throttle(f, wait, options);
 }
