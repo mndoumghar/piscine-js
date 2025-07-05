@@ -1,6 +1,8 @@
  function debounce(f, wait, options) {
+    let res
     return function(...arg) {
-            return setTimeout(f(...arg), wait)
+       res = setTimeout(f(...arg), wait)
+            return res
     }
 }
 
