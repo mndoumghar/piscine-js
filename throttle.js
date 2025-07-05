@@ -13,7 +13,7 @@ function throttle(f, wait) {
     }
     return function (...arg) {
         if (shouldwiat) {
-            waitingArgs = arg
+            waitainArg = arg
             return
 
         }
