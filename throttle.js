@@ -38,6 +38,7 @@ function throttle(f, wait, options = {}) {
   }
 }
 
-function opThrottle(f, wait) {
-    return throttle(f, wait)
+function opThrottle(f, wait,options) {
+    
+    return throttle(f, wait,options)
 }
