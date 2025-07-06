@@ -45,7 +45,7 @@ export function opThrottle(func, wait, { leading = false, trailing = true } = {}
         }
 
         hasCalledLeading = false;
-      }, wait - (now - lastCallTime));
+      }, Math.max(remainingWait, 0))
     }
   };
 }
