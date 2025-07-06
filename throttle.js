@@ -12,36 +12,42 @@ export function throttle(f, wait) {
         }, wait)
       }
 }
+
 export function opThrottle(f, wait, options = {}) {
   let timeout = null;
-  let lastTime = null;
-  let target = null;
+  let lastArgs = null;
+  let lastThis = null;
+  let lastCallTime = 0;
 
-  return function(...arg) {
-    if (timeout) {
-      lastTime = this;  
-      target = arg;
-      return;
-    }
+  return function(...args) {
+    const now = Date.now();
+    const remaining = wait - (now - lastCallTime);
 
-    if (options.leading !== false) {
-      f.apply(this, arg);
-    } else {
-      lastTime = this;
-      target = arg;
-    }
-
-    const coldwn = () => {
-      if (options.trailing && target) {  
-        f.call(lastTime, ...target);
-        lastTime = null;
-        target = null;
-        timeout = setTimeout(coldwn, wait);  
-      } else {
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
         timeout = null;
       }
-    };
-
-    timeout = setTimeout(coldwn, wait);
+      lastCallTime = now;
+      if (options.leading !== false) {
+        f.apply(this, args);
+      } else {
+        // Queue for trailing call if leading is disabled
+        lastArgs = args;
+        lastThis = this;
+      }
+    } else if (!timeout && options.trailing !== false) {
+      lastArgs = args;
+      lastThis = this;
+      timeout = setTimeout(() => {
+        lastCallTime = options.leading === false ? 0 : Date.now();
+        timeout = null;
+        if (lastArgs) {
+          f.apply(lastThis, lastArgs);
+          lastArgs = null;
+          lastThis = null;
+        }
+      }, remaining);
+    }
   };
 }
