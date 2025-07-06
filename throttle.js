@@ -4,7 +4,7 @@ function throttle(f, wait, options = {}) {
   let lastArgs = null;
   
   const leading = options.leading !== false;
-  const trailing = options.trailing !== false;
+  const trailing = options.trailing !== true;
 
   function callFn(args) {
     lastCallTime = Date.now();
@@ -40,3 +40,4 @@ function throttle(f, wait, options = {}) {
 function opThrottle(f, wait, options) {
   return throttle(f, wait, options);
 }
+
