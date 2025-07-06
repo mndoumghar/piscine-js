@@ -12,7 +12,6 @@ export function throttle(f, wait) {
         }, wait)
       }
 }
-
 export function opThrottle(f, wait, options = {}) {
   let timeout = null;
   let lastTime = null;
@@ -22,7 +21,7 @@ export function opThrottle(f, wait, options = {}) {
     if (timeout) {
       lastTime = this;  
       target = arg;
-      return
+      return;
     }
 
     if (options.leading !== false) {
@@ -32,14 +31,17 @@ export function opThrottle(f, wait, options = {}) {
       target = arg;
     }
 
+    const coldwn = () => {
+      if (options.trailing && target) {  
+        f.call(lastTime, ...target);
+        lastTime = null;
+        target = null;
+        timeout = setTimeout(coldwn, wait);  
+      } else {
+        timeout = null;
+      }
+    };
 
-
-     const coldwn = () => {
-            if(options.trailing && target) { func.call(lastTime, ...target) ; lastTime = null ; target = null
-                timer = setTimeout(coldwn, wait)
-            } else { timeout = null }
-        }
-
-    timeout = setTimeout(coldwn, wait)
+    timeout = setTimeout(coldwn, wait);
   };
 }
