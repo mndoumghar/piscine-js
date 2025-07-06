@@ -25,7 +25,6 @@ export function opThrottle(f, wait, options = {}) {
       return
     }
 
-    
     if (options.leading !== false) {
       f.apply(this, arg);
     } else {
@@ -35,15 +34,12 @@ export function opThrottle(f, wait, options = {}) {
 
 
 
-    const coldwn = function() {
-      if (options.leading === false && target) {
-        f.apply(lastTime, target);
-      }
-      timeout = null;
-      target = null;
-      lastTime = null;
-    };
+     const coldwn = () => {
+            if(options.trailing && target) { func.call(lastTime, ...target) ; lastTime = null ; target = null
+                timer = setTimeout(coldwn, wait)
+            } else { timeout = null }
+        }
 
-    timeout = setTimeout(coldwn, wait);
+    timeout = setTimeout(coldwn, wait)
   };
 }
