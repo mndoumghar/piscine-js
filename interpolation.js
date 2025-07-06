@@ -14,5 +14,5 @@ function interpolation(step, start, end, callback, duration) {
             const x = stepsCompleted * stepTime + 2;
             callback([y, x]);
         }
-    }, stepTime * 1000);
+    }, stepTime);
 }
