@@ -3,14 +3,14 @@ function interpolation(step, start, end, callback, duration) {
     let evrystep = duration / step
     let z = start
         let conter = 0
-
+        const increment = (end - start) 
     let res = setInterval(() => {
         let y = z* 0.2
         let x = conter * evrystep+2
 
-       // callback([y, x])
+       callback([y, x])
 
-        z++
+        z+= increment
 
         conter +=  evrystep
 
