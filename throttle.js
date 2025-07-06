@@ -13,6 +13,7 @@ export const throttle = (fn, wait) => {
 export const opThrottle = (f, wait, options = {}) => {    
     let timeout = null, last = null, trargs = null
     return function (...args) {
+      
         if(timeout) { last = this ; trargs = args ; return }
         if(options.leading){ f.call(this, ...args) } else { last = this
             trargs = args}

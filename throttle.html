@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemples Throttle en Darija</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .box {
+            height: 200px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            overflow: auto;
+        }
+        .btn {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .log {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemples Throttle en Darija</h1>
+
+    <!-- Exemple 1: Scroll de base -->
+    <h2>1. Scroll (throttle de base)</h2>
+    <div class="box" id="scroll-box">
+        Défiler ici pour voir le throttle de base<br><br>
+        Contenu...<br><br><br><br><br><br><br><br><br><br>
+        Contenu...<br><br><br><br><br><br><br><br><br><br>
+    </div>
+    <div class="log" id="scroll-log"></div>
+
+    <!-- Exemple 2: Bouton avec leading -->
+    <h2>2. Bouton (leading true)</h2>
+    <button class="btn" id="leading-btn">Cliquez vite ici</button>
+    <div class="log" id="leading-log"></div>
+
+    <!-- Exemple 3: Champ recherche avec trailing -->
+    <h2>3. Recherche (trailing true)</h2>
+    <input type="text" id="search-input" placeholder="Tapez vite ici...">
+    <div class="log" id="search-log"></div>
+
+    <!-- Exemple 4: Redimensionnement fenêtre -->
+    <p>4. Redimensionnement fenêtre (leading + trailing)</p>
+    <div class="log" id="resize-log"></div>
+
+    <script>
+        // Fonctions throttle
+        const throttle = (fn, wait) => {
+            let boo = false
+            return (...args) => {
+                if (boo) return
+                fn(...args)
+                boo = true
+                setTimeout(() => {
+                    boo = false
+                }, wait)
+            }
+        }
+
+        const opThrottle = (f, wait, options = {}) => {    
+            let timeout = null, last = null, trargs = null
+            return function (...args) {
+                if(timeout) { last = this ; trargs = args ; return }
+                if(options.leading){ f.call(this, ...args) } else { last = this; trargs = args }
+                const boo = () => {
+                    if(options.trailing && trargs) { f.call(last, ...trargs) ; last = null ; trargs = null
+                        timeout = setTimeout(boo, wait)
+                    } else { timeout = null }
+                }
+                timeout = setTimeout(boo, wait)
+            }
+        }
+
+        // Exemple 1: Scroll de base
+        const scrollLog = document.getElementById('scroll-log');
+
+        const hadiFonction = () => {
+
+            scrollLog.innerHTML += `Scroll à: ${new Date().toLocaleTimeString()}<br>`;
+        }
+        const throttledScroll = throttle(hadiFonction, 1000);
+        document.getElementById('scroll-box').addEventListener('scroll', throttledScroll);
+
+        // Exemple 2: Bouton avec leading
+        const leadingLog = document.getElementById('leading-log');
+        const clicked = () => {
+            leadingLog.innerHTML += `Click à: ${new Date().toLocaleTimeString()}<br>`;
+        }
+        const throttledClick = opThrottle(clicked, 2000, {leading: true, trailing: false});
+        document.getElementById('leading-btn').addEventListener('click', throttledClick);
+
+        // Exemple 3: Recherche avec trailing
+        const searchLog = document.getElementById('search-log');
+        const search = (text) => {
+            searchLog.innerHTML += `Recherche: "${text}" à ${new Date().toLocaleTimeString()}<br>`;
+        }
+        const throttledSearch = opThrottle(search, 500, {leading: false, trailing: true});
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            throttledSearch(e.target.value);
+        });
+
+        // Exemple 4: Redimensionnement
+        const resizeLog = document.getElementById('resize-log');
+        const handleResize = () => {
+            resizeLog.innerHTML += `Fenêtre redimensionnée: ${window.innerWidth}x${window.innerHeight} à ${new Date().toLocaleTimeString()}<br>`;
+        }
+        const throttledResize = opThrottle(handleResize, 1000, {leading: true, trailing: true});
+        window.addEventListener('resize', throttledResize);
+    </script>
+</body>
+</html>
