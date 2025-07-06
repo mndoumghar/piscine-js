@@ -7,7 +7,6 @@ function interpolation(step, start, end, callback, duration) {
         let y = z* 0.2
         let x = conter * evrystep+2
 
-       callback([y, x])
 
         z+= increment
 
