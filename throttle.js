@@ -16,18 +16,24 @@ export function throttle(func, wait) {
 }
 
 export function opThrottle(func, wait, { leading = false, trailing = false } = {}) {
-  let last = 0, timeout, lastArgs;
-  const run = () => {
-    last = Date.now();
-    timeout = null;
-    func(...lastArgs);
-  };
-  return (...args) => {
+  let timeout = null;
+  let lastArgs = null;
+  
+  return function(...args) {
     lastArgs = args;
-    const now = Date.now();
-    if (leading && now - last >= wait) run();
-    else if (!timeout && trailing) {
-      timeout = setTimeout(run, wait - (now - last));
+    
+    if (!timeout) {
+      if (leading) {
+        func.apply(this, lastArgs);
+      }
+      
+      timeout = setTimeout(() => {
+        timeout = null;
+        if (trailing && lastArgs) {
+          func.apply(this, lastArgs);
+          lastArgs = null;
+        }
+      }, wait);
     }
   };
 }
