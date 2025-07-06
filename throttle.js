@@ -1,40 +1,33 @@
-function throttle(func, wait, options) {
-  var timeout = null;
-  var previous = 0;
-  var result;
-  var context, args;
-
-  if (!options) options = {};
-
-  var later = function() {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-
-  return function() {
-    var now = Date.now();
-    if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-
-    if (remaining <= 0 && (!options.trailing || timeout === null)) {
-      if (timeout) {
-        clearTimeout(timeout);
+export function throttle(func, wait) {
+  let last = 0, timeout;
+  return (...args) => {
+    const now = Date.now();
+    if (now - last >= wait) {
+      last = now;
+      func(...args);
+    } else if (!timeout) {
+      timeout = setTimeout(() => {
         timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
+        last = Date.now();
+        func(...args);
+      }, wait - (now - last));
     }
-    return result;
   };
 }
 
-function opThrottle(f, wait, options) {
-  return throttle(f, wait, options);
+export function opThrottle(func, wait, { leading = false, trailing = false } = {}) {
+  let last = 0, timeout, lastArgs;
+  const run = () => {
+    last = Date.now();
+    timeout = null;
+    func(...lastArgs);
+  };
+  return (...args) => {
+    lastArgs = args;
+    const now = Date.now();
+    if (leading && now - last >= wait) run();
+    else if (!timeout && trailing) {
+      timeout = setTimeout(run, wait - (now - last));
+    }
+  };
 }
