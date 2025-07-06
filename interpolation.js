@@ -1,35 +1,18 @@
 function interpolation(step, start, end, callback, duration) {
-    let evrystep = duration / step
-    let z = start
-        let conter = 0
-        const increment = (end - start) /step
-    let res = setInterval(() => {
-        let y = z* 0.2
-        let x = conter * evrystep+2
+    const stepDuration = duration / step;
+    const increment = (end - start) / step;
+    let currentValue = start;
+    let currentStep = 0;
 
+    const interval = setInterval(() => {
+        currentValue += increment;
+        currentStep++;
 
-        z+= increment
-
-        conter +=  evrystep
-
-
-        if ( z== step || end == y) {
-            clearInterval(res)
-            callback([y, x])
+        if (currentStep >= step) {
+            clearInterval(interval);
+            const y = currentValue * 0.2;
+            const x = currentStep * stepDuration + 2;
+            callback([y, x]);
         }
-        conter= z
-
-
-    }, 1000 * evrystep)
-
+    }, stepDuration * 1000);
 }
-
-interpolation(
-    5,
-    0,
-    4,
-    (([x, y]) => {
-        console.log([x, y])
-    })
-    ,
-    50)
