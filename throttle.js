@@ -14,6 +14,8 @@ export function throttle(func, wait) {
     }
   };
 }
+
+
 export function opThrottle(func, wait, { leading = false, trailing = true } = {}) {
   let timeout = null;
   let lastArgs = null;
@@ -23,13 +25,14 @@ export function opThrottle(func, wait, { leading = false, trailing = true } = {}
   return function (...args) {
     const now = Date.now();
 
-    if (!timeout && leading && !hasCalledLeading) {
-      func.apply(this, args);
+    if (leading && !hasCalledLeading) {
+      func(...args); 
       hasCalledLeading = true;
       lastCallTime = now;
-    } else {
-      lastArgs = args;
+      return 
     }
+
+    lastArgs = args;
 
     if (!timeout) {
       timeout = setTimeout(() => {
@@ -42,7 +45,7 @@ export function opThrottle(func, wait, { leading = false, trailing = true } = {}
         }
 
         hasCalledLeading = false;
-      }, wait);
+      }, wait - (now - lastCallTime));
     }
   };
 }
