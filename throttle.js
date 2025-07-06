@@ -1,6 +1,9 @@
 export function throttle(f, wait) {
       let boo = false
       return function(...arg) {
+        if(boo) {
+          return
+        }
         f(...arg)
         boo = true
         setTimeout(() => {
@@ -8,9 +11,8 @@ export function throttle(f, wait) {
 
         }, wait)
       }
-
-
 }
+
 export function opThrottle(f, wait, options = {}) {
   let timeout = null;
   let lastTime = null;
@@ -22,6 +24,7 @@ export function opThrottle(f, wait, options = {}) {
       target = arg;
       return
     }
+
     
     if (options.leading !== false) {
       f.apply(this, arg);
@@ -29,6 +32,8 @@ export function opThrottle(f, wait, options = {}) {
       lastTime = this;
       target = arg;
     }
+
+
 
     const coldwn = function() {
       if (options.leading === false && target) {
