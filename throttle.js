@@ -15,7 +15,7 @@ export function throttle(func, wait) {
   };
 }
 
-export function opThrottle(func, wait, { leading, trailing }) {
+export function opThrottle(func, wait, { leading = false, trailing = true } = {}) {
   let timeout = null;
   let lastArgs = null;
   
