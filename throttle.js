@@ -11,35 +11,34 @@ export function throttle(f, wait) {
 
 
 }
-
 export function opThrottle(f, wait, options = {}) {
-  let timeout = null
-  let lastTime = null
-  let target = null
+  let timeout = null;
+  let lastTime = null;
+  let target = null;
 
   return function(...arg) {
     if (timeout) {
-      last = this
-      target = null
+      lastTime = this;  
+      target = arg;
+      return
     }
-    if (options.leading) {
-      f(...arg)
+    
+    if (options.leading !== false) {
+      f.apply(this, arg);
     } else {
-      lastTime = this
-      target = arg
+      lastTime = this;
+      target = arg;
     }
-      const  coldwn  = function() {
-        if(options.leading) {
-          f.call(this, ...target) 
-          lastTime= null
-          target = null
-          timeout= setTimeout(coldwn, wait)
 
-        } else {
-          timeout = null
-        }
+    const coldwn = function() {
+      if (options.leading === false && target) {
+        f.apply(lastTime, target);
       }
-      timeout = setTimeout(coldwn, wait)
-  }
+      timeout = null;
+      target = null;
+      lastTime = null;
+    };
 
+    timeout = setTimeout(coldwn, wait);
+  };
 }
