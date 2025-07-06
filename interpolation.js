@@ -1,21 +1,28 @@
 
 function interpolation(step, start, end, callback, duration) {
     let evrystep = duration / step
+    let z = start
+        let conter = 0
 
     let res = setInterval(() => {
-        let y = start * 0.2
-        let x = start * evrystep
-        start++
+        let y = z* 0.2
+        let x = conter * evrystep+2
 
-        if (duration == x && y == end) {
+       // callback([y, x])
+
+        z++
+
+        conter +=  evrystep
+
+
+        if ( z>= step) {
             clearInterval(res)
             callback([y, x])
-
         }
+        conter= z
 
 
     }, 1000 * evrystep)
-
 
 }
 
