@@ -14,26 +14,36 @@ export function throttle(func, wait) {
     }
   };
 }
-
 export function opThrottle(func, wait, { leading = false, trailing = true } = {}) {
   let timeout = null;
   let lastArgs = null;
-  
-  return function(...args) {
-    lastArgs = args;
-    
+  let lastCallTime = 0;
+  let hasCalledLeading = false;
+
+  return function (...args) {
+    const now = Date.now();
+
+    if (!timeout && leading && !hasCalledLeading) {
+      func.apply(this, args);
+      hasCalledLeading = true;
+      lastCallTime = now;
+    } else {
+      lastArgs = args;
+    }
+
     if (!timeout) {
-      if (leading) {
-        func.apply(this, lastArgs);
-      }
-      
       timeout = setTimeout(() => {
         timeout = null;
+
         if (trailing && lastArgs) {
           func.apply(this, lastArgs);
+          lastCallTime = Date.now();
           lastArgs = null;
         }
+
+        hasCalledLeading = false;
       }, wait);
     }
   };
 }
+
