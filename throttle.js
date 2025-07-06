@@ -13,11 +13,10 @@ function throttle(func, wait, options) {
     if (!timeout) context = args = null;
   };
 
-  return function() {
+  const throttled = function() {
+    
     const now = Date.now();
-    if (!previous && options.leading === false) {
-      previous = now;
-    }
+    if (!previous && options.leading === false) previous = now;
     const remaining = wait - (now - previous);
     context = this;
     args = arguments;
@@ -35,6 +34,14 @@ function throttle(func, wait, options) {
     }
     return result;
   };
+
+  throttled.cancel = function() {
+    clearTimeout(timeout);
+    previous = 0;
+    timeout = context = args = null;
+  };
+
+  return throttled;
 }
 
 function opThrottle(f, wait, options) {
